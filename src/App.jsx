@@ -109,39 +109,57 @@ function App() {
             onSubmit={handleSearch}
             className="w-full max-w-2xl"
           >
-            <div className="relative flex items-center">
+            <div className="search-border-box">
 
-              <div className="absolute left-5 text-gray-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.8"
-                  stroke="currentColor"
-                  className="w-5 h-5"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m21 21-4.35-4.35m1.35-5.4a6.75 6.75 0 1 1-13.5 0 6.75 6.75 0 0 1 13.5 0Z"
-                  />
-                </svg>
+              <div className="search-border-glow" />
+
+              <div className="search-input-inner">
+
+                <div className="absolute left-5 text-gray-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.8"
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m21 21-4.35-4.35m1.35-5.4a6.75 6.75 0 1 1-13.5 0 6.75 6.75 0 0 1 13.5 0Z"
+                    />
+                  </svg>
+                </div>
+
+                <input
+                  type="text"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search anything..."
+                  className="w-full h-14 pl-14 pr-6 rounded-full bg-white/90 outline-none text-base md:text-lg placeholder:text-gray-400 focus:ring-4 focus:ring-green-100 transition"
+                />
+
               </div>
-
-              <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search anything..."
-                className="w-full h-14 pl-14 pr-6 rounded-full bg-white/90 border border-green-200 shadow-sm outline-none text-base md:text-lg placeholder:text-gray-400 focus:border-green-400 focus:ring-4 focus:ring-green-100 transition"
-              />
 
             </div>
           </form>
-
           <p className="mt-5 text-sm text-gray-500">
             Press Enter to search
           </p>
+
+          <div className="mt-8 max-w-2xl text-center">
+            <h2 className="text-lg font-medium text-gray-800">
+              About this search engine
+            </h2>
+
+            <p className="mt-2 text-sm md:text-base leading-6 text-gray-500">
+              Surajit’s Search is an India-based search engine designed to help you
+              discover information, images, and videos from across the web in one
+              simple place. Search anything you need and explore relevant results
+              through a clean, fast, and easy-to-use experience.
+            </p>
+          </div>
 
         </section>
       )}
@@ -390,7 +408,7 @@ function App() {
                               <button
 
                                 type="button"
-                                onClick={() => setSelectedImage(searchResults.images?.data?.[0] )}
+                                onClick={() => setSelectedImage(searchResults.images?.data?.[0])}
                                 className="group text-left w-full flex-shrink-0 w-40 sm:w-48"
                               >
                                 <div className="h-28 sm:h-32 rounded-xl overflow-hidden bg-gray-100 border border-green-100">
@@ -553,75 +571,75 @@ function App() {
                         </div>
                       ) : (
                         <div className="text-black text-[15px] sm:text-base leading-7">
-                         
-<div className="relative">
 
-  {/* AI Response */}
-  <div
-    className={`
+                          <div className="relative">
+
+                            {/* AI Response */}
+                            <div
+                              className={`
       text-black text-[15px] sm:text-base leading-7
       overflow-hidden transition-all duration-300
       ${aiExpanded ? "max-h-none" : "max-h-[70px] sm:max-h-[105px]"}
     `}
-  >
-    <ReactMarkdown
-      components={{
-        strong: ({ children }) => (
-          <strong className="font-semibold text-black">
-            {children}
-          </strong>
-        ),
+                            >
+                              <ReactMarkdown
+                                components={{
+                                  strong: ({ children }) => (
+                                    <strong className="font-semibold text-black">
+                                      {children}
+                                    </strong>
+                                  ),
 
-        p: ({ children }) => (
-          <p className="mb-4 leading-7">
-            {children}
-          </p>
-        ),
+                                  p: ({ children }) => (
+                                    <p className="mb-4 leading-7">
+                                      {children}
+                                    </p>
+                                  ),
 
-        ul: ({ children }) => (
-          <ul className="list-disc pl-5 space-y-2 mb-4">
-            {children}
-          </ul>
-        ),
+                                  ul: ({ children }) => (
+                                    <ul className="list-disc pl-5 space-y-2 mb-4">
+                                      {children}
+                                    </ul>
+                                  ),
 
-        li: ({ children }) => (
-          <li className="pl-1 leading-7">
-            {children}
-          </li>
-        ),
-      }}
-    >
-      {aiSearch}
-    </ReactMarkdown>
-  </div>
+                                  li: ({ children }) => (
+                                    <li className="pl-1 leading-7">
+                                      {children}
+                                    </li>
+                                  ),
+                                }}
+                              >
+                                {aiSearch}
+                              </ReactMarkdown>
+                            </div>
 
-  {/* See More */}
-  {!aiExpanded && (
-    <div className="relative -mt-7 pt-7 bg-gradient-to-t from-gray-100 via-gray-100/95 to-transparent">
-      <button
-        type="button"
-        onClick={() => setAiExpanded(true)}
-        className="text-green-600 hover:text-green-700 text-sm font-medium hover:underline"
-      >
-        See more
-      </button>
-    </div>
-  )}
+                            {/* See More */}
+                            {!aiExpanded && (
+                              <div className="relative -mt-7 pt-7 bg-gradient-to-t from-gray-100 via-gray-100/95 to-transparent">
+                                <button
+                                  type="button"
+                                  onClick={() => setAiExpanded(true)}
+                                  className="text-green-600 hover:text-green-700 text-sm font-medium hover:underline"
+                                >
+                                  See more
+                                </button>
+                              </div>
+                            )}
 
-  {/* See Less */}
-  {aiExpanded && (
-    <div className="mt-3">
-      <button
-        type="button"
-        onClick={() => setAiExpanded(false)}
-        className="text-green-600 hover:text-green-700 text-sm font-medium hover:underline"
-      >
-        See less
-      </button>
-    </div>
-  )}
+                            {/* See Less */}
+                            {aiExpanded && (
+                              <div className="mt-3">
+                                <button
+                                  type="button"
+                                  onClick={() => setAiExpanded(false)}
+                                  className="text-green-600 hover:text-green-700 text-sm font-medium hover:underline"
+                                >
+                                  See less
+                                </button>
+                              </div>
+                            )}
 
-</div>
+                          </div>
 
 
                         </div>
@@ -680,12 +698,12 @@ function App() {
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 
                       {searchResults.images?.data?.map((item, index) => (
-                       <button
-                                  key={index}
-                                  type="button"
-                                  onClick={() => setSelectedImage(item)}
-                                  className="group text-left w-full flex-shrink-0 w-40 sm:w-48"
-                                >
+                        <button
+                          key={index}
+                          type="button"
+                          onClick={() => setSelectedImage(item)}
+                          className="group text-left w-full flex-shrink-0 w-40 sm:w-48"
+                        >
                           <div className="aspect-square rounded-xl overflow-hidden bg-gray-100 border border-green-100">
                             <img
                               src={item.thumbnail || item.image}
@@ -724,14 +742,14 @@ function App() {
 
                         return (
                           <button
-                                    key={index}
-                                    type="button"
-                                    onClick={() => {
-                                      setSelectedVideo(item);
-                                      setVideoMuted(true);
-                                    }}
-                                    className="group text-left w-full flex-shrink-0 w-40 sm:w-48"
-                                  >
+                            key={index}
+                            type="button"
+                            onClick={() => {
+                              setSelectedVideo(item);
+                              setVideoMuted(true);
+                            }}
+                            className="group text-left w-full flex-shrink-0 w-40 sm:w-48"
+                          >
                             <div className="aspect-video rounded-xl overflow-hidden bg-gray-100 border border-green-100">
                               {videoId ? (
                                 <iframe
@@ -778,107 +796,107 @@ function App() {
 
       {/* IMAGE VIEWER MODAL */}
 
-{selectedImage && (
-  <div
-    className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-    onClick={() => setSelectedImage(null)}
-  >
-    <div
-      className="relative max-w-[95vw] max-h-[92vh]"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close Button */}
-      <button
-        type="button"
-        onClick={() => setSelectedImage(null)}
-        className="absolute -top-3 -right-3 z-10 w-9 h-9 rounded-full bg-black/80 text-white flex items-center justify-center text-lg hover:bg-black transition"
-      >
-        ×
-      </button>
-
-      {/* Image */}
-      <a
-  href={selectedImage.url}
-  target="_blank"
-  rel="noopener noreferrer"
->
-      <img
-        src={selectedImage.image || selectedImage.thumbnail}
-        alt={selectedImage.title || "Search image"}
-        className="max-w-[95vw] max-h-[92vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
-      /></a>
-
-      {/* Image Title */}
-      {selectedImage.title && (
-        <p className="text-white text-sm mt-3 text-center max-w-3xl mx-auto">
-          {selectedImage.title}
-        </p>
-      )}
-    </div>
-  </div>
-)}
-
-
-{/* VIDEO VIEWER MODAL */}
-
-{selectedVideo && (
-  <div
-    className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
-    onClick={() => setSelectedVideo(null)}
-  >
-    <div
-      className="relative w-full max-w-5xl"
-      onClick={(e) => e.stopPropagation()}
-    >
-      {/* Close Button */}
-      <button
-        type="button"
-        onClick={() => setSelectedVideo(null)}
-        className="absolute -top-3 -right-3 z-20 w-9 h-9 rounded-full bg-black/80 text-white flex items-center justify-center text-lg hover:bg-black transition"
-      >
-        ×
-      </button>
-
-      {/* Video */}
-      <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-2xl">
-        {(() => {
-          let videoId = "";
-
-          try {
-            videoId =
-              new URL(selectedVideo.url).searchParams.get("v") || "";
-          } catch {}
-
-          return videoId ? (
-            <iframe
-              className="w-full h-full"
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${videoMuted ? 1 : 0}&controls=1&rel=0`}
-              title={selectedVideo.title || "YouTube video"}
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-            />
-          ) : null;
-        })()}
-      </div>
-
-      {/* Video Controls */}
-      <div className="flex items-center justify-between mt-3">
-        <p className="text-white text-sm line-clamp-2 pr-4">
-          {selectedVideo.title || "Video result"}
-        </p>
-
-        <button
-          type="button"
-          onClick={() => setVideoMuted((prev) => !prev)}
-          className="flex-shrink-0 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-gray-200 transition"
+      {selectedImage && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setSelectedImage(null)}
         >
-          {videoMuted ? "🔇 Unmute" : "🔊 Mute"}
-        </button>
-      </div>
-    </div>
-  </div>
-)}
+          <div
+            className="relative max-w-[95vw] max-h-[92vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => setSelectedImage(null)}
+              className="absolute -top-3 -right-3 z-10 w-9 h-9 rounded-full bg-black/80 text-white flex items-center justify-center text-lg hover:bg-black transition"
+            >
+              ×
+            </button>
+
+            {/* Image */}
+            <a
+              href={selectedImage.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={selectedImage.image || selectedImage.thumbnail}
+                alt={selectedImage.title || "Search image"}
+                className="max-w-[95vw] max-h-[92vh] w-auto h-auto object-contain rounded-xl shadow-2xl"
+              /></a>
+
+            {/* Image Title */}
+            {selectedImage.title && (
+              <p className="text-white text-sm mt-3 text-center max-w-3xl mx-auto">
+                {selectedImage.title}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
+
+
+      {/* VIDEO VIEWER MODAL */}
+
+      {selectedVideo && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              type="button"
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-3 -right-3 z-20 w-9 h-9 rounded-full bg-black/80 text-white flex items-center justify-center text-lg hover:bg-black transition"
+            >
+              ×
+            </button>
+
+            {/* Video */}
+            <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-black shadow-2xl">
+              {(() => {
+                let videoId = "";
+
+                try {
+                  videoId =
+                    new URL(selectedVideo.url).searchParams.get("v") || "";
+                } catch { }
+
+                return videoId ? (
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=${videoMuted ? 1 : 0}&controls=1&rel=0`}
+                    title={selectedVideo.title || "YouTube video"}
+                    frameBorder="0"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                ) : null;
+              })()}
+            </div>
+
+            {/* Video Controls */}
+            <div className="flex items-center justify-between mt-3">
+              <p className="text-white text-sm line-clamp-2 pr-4">
+                {selectedVideo.title || "Video result"}
+              </p>
+
+              <button
+                type="button"
+                onClick={() => setVideoMuted((prev) => !prev)}
+                className="flex-shrink-0 px-4 py-2 rounded-full bg-white text-black text-sm font-medium hover:bg-gray-200 transition"
+              >
+                {videoMuted ? "🔇 Unmute" : "🔊 Mute"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </main>
   );

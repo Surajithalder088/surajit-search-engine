@@ -1,2 +1,65 @@
 
 @import "tailwindcss";
+
+
+
+.search-border-box {
+  position: relative;
+  height: 56px;
+  border-radius: 9999px;
+  padding: 2px;
+  overflow: hidden;
+
+  background: #bbf7d0;
+
+  box-shadow:
+    0 8px 18px -8px rgba(0, 0, 0, 0.55);
+}
+
+.search-border-glow {
+  position: absolute;
+  width: 180%;
+  height: 180%;
+  left: -40%;
+  top: -40%;
+
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 285deg,
+    #4ade80 320deg,
+    #86efac 345deg,
+    #4ade80 360deg
+  );
+
+  animation: search-border-spin 6s linear infinite;
+
+  filter: blur(1px);
+}
+
+.search-input-inner {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 9999px;
+
+  background: rgba(255, 255, 255, 0.95);
+
+  overflow: hidden;
+}
+
+@keyframes search-border-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
